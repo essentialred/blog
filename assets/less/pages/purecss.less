@@ -6,11 +6,18 @@ html, body {
     padding: 0;
 }
 
-.panel {
+.container {
+    max-width: 1280px;
     height: 100%;
+    margin: 0 auto;
+}
+
+.panel {
+    height: 800px;
     background: url('@{imgBasePath}/mariel.jpg') 50% 50% no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    overflow: hidden;
 
     &.panel-2,
     &.panel-4,

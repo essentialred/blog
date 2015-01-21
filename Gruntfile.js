@@ -15,11 +15,13 @@ module.exports = function(grunt) {
 		less: {
 			main: 'assets/less/main.less',
 			purecss: 'assets/less/pages/purecss.less',
-			cssWithJs: 'assets/less/pages/css-with-js.less'
+			cssWithJs: 'assets/less/pages/css-with-js.less',
+			noBgSize: 'assets/less/pages/no-bg-size.less'
 		},
 
 		js: {
-			cssWithJs: 'assets/js/src/css-with-js.js'
+			cssWithJs: 'assets/js/src/css-with-js.js',
+			noBgSize: 'assets/js/src/no-bg-size.js'
 		}
 
 	};
@@ -41,7 +43,8 @@ module.exports = function(grunt) {
 				files: {
 					'assets/css/main.min.css' : config.less.main,
 					'assets/css/main.purecss.min.css' : config.less.purecss,
-					'assets/css/main.css-with-js.min.css' : config.less.cssWithJs
+					'assets/css/main.css-with-js.min.css' : config.less.cssWithJs,
+					'assets/css/main.no-bg-size.min.css' : config.less.noBgSize
 				}
 			}
 		},
@@ -51,7 +54,8 @@ module.exports = function(grunt) {
 			src: {
 				files: {
 					'assets/js/src.bundle.js': [config.paths.src + 'main.js'],
-					'assets/js/cssWithJs.bundle.js' : [config.js.cssWithJs]
+					'assets/js/cssWithJs.bundle.js' : [config.js.cssWithJs],
+					'assets/js/noBgSize.bundle.js' : [config.js.noBgSize]
 				}
 			},
 
@@ -114,6 +118,10 @@ module.exports = function(grunt) {
 			cssWithJs: {
 				src: ['assets/js/vendor.bundle.js', 'assets/js/cssWithJs.bundle.js'],
 				dest: 'assets/js/cssWithJs.min.js'
+			},
+			noBgSize: {
+				src: ['assets/js/vendor.bundle.js', 'assets/js/noBgSize.bundle.js'],
+				dest: 'assets/js/noBgSize.min.js'
 			}
 		},
 

@@ -1,0 +1,62 @@
+/*-------------------------------------------- */
+/** LESS Hat Vendor Lib */
+/*-------------------------------------------- */
+
+/**
+ * Less Hat contains many useful mixins including CSS 3 properties that require prefixes. 
+ * See https://github.com/csshat/lesshat/blob/master/README.md for your options.
+ */
+@import "../vendor/lesshat";
+
+@imgBasePath: '../../assets/img';
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1280px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.panel {
+    position: relative;
+    height: 800px;
+    overflow: hidden;
+
+    &.panel-2,
+    &.panel-4,
+    &.panel-6 {
+
+        .copy {
+            float: right;
+        }
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 50%;
+        .translateX(-50%);
+        height: 200%;
+    }
+
+    .copy {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.copy {
+    float: left;
+    width: 30%;
+    margin: 10%;
+    padding: 5%;
+    background: rgba(255,255,255,0.8);
+    border-radius: 5px;
+}

@@ -12,15 +12,17 @@ require('jquery-scrollTie');
 
 var resizeTicker = 0;
 
-var $panels = $('.panel');
+var $panels = $('.panel'),
+    $images = $('.panel img');
 
 /*-------------------------------------------- */
 /** Parallax BG positions */
 /*-------------------------------------------- */
 
-$panels.scrollTie({
-    property: 'backgroundPositionY',
+$images.scrollTie({
+    property: 'translateY',
     speed: 0.5,
+    animateWhenOutOfView: true,
     reverseDirection: true,
     stopAtValue: -800
 });
