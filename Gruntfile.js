@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 
 	};
 
-	var vendorExternal = ['jquery'];
+	var vendorExternal = ['jquery', 'jquery-scrollTie'];
 
 	grunt.initConfig({
 		
@@ -49,9 +49,6 @@ module.exports = function(grunt) {
 		browserify: {
 
 			src: {
-				options: {
-					external: vendorExternal
-				},
 				files: {
 					'assets/js/src.bundle.js': [config.paths.src + 'main.js'],
 					'assets/js/cssWithJs.bundle.js' : [config.js.cssWithJs]
@@ -95,7 +92,7 @@ module.exports = function(grunt) {
 
 			concat: {
 				files: ['assets/js/vendor.bundle.js', 'assets/js/src.bundle.js'],
-				tasks: ['concat:build']
+				tasks: ['concat']
 			},
 
 			livereload: {
@@ -113,6 +110,10 @@ module.exports = function(grunt) {
 			build: {
 				src: ['assets/js/vendor.bundle.js', 'assets/js/src.bundle.js'],
 				dest: 'assets/js/bundle.js'
+			},
+			cssWithJs: {
+				src: ['assets/js/vendor.bundle.js', 'assets/js/cssWithJs.bundle.js'],
+				dest: 'assets/js/cssWithJs.min.js'
 			}
 		},
 
@@ -142,5 +143,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 
 	// register custom tasks
-	grunt.registerTask('default', ['less', 'browserify:src', 'browserify:vendor', 'concat:build']);
+	grunt.registerTask('default', ['less', 'browserify:src', 'browserify:vendor', 'concat']);
 };
