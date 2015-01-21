@@ -1,0 +1,33 @@
+@imgBasePath: '../../assets/img';
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.panel {
+    height: 200%;
+    margin-bottom: 400px;
+    background: url('@{imgBasePath}/mariel.jpg') 50% 50% no-repeat;
+    background-size: cover;
+
+    &.panel-2,
+    &.panel-4,
+    &.panel-6 {
+        background-image: url('@{imgBasePath}/howl.jpg');
+
+        .copy {
+            float: right;
+        }
+    }
+}
+
+.copy {
+    float: left;
+    width: 30%;
+    margin: 10%;
+    padding: 5%;
+    background: rgba(255,255,255,0.8);
+    border-radius: 5px;
+}

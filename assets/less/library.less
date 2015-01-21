@@ -1,0 +1,37 @@
+/*-----------------------------------------------------------------------------
+ *-----------------------------------------------------------------------------
+ *
+ * LIBRARY
+ * 
+ * Global library type styles (i.e. .btn, .error, .warning). These styles 
+ * are always classes and are never prefixed by a location specific selector.
+ *
+ *-----------------------------------------------------------------------------
+ *----------------------------------------------------------------------------- */
+
+/**
+ * Apply to list elements that will have a custom style applied via other classes 
+ * to remove default bullets and margin
+ */
+ .ui-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+ }
+
+/**
+ * General button style. Modify as needed.
+ */
+.btn {
+    display: inline-block;
+    padding: 5px 15px;
+    .border-radius(3);
+
+    &.primary-btn {
+        background: @primary-btn-bg;
+    }
+
+    &.secondary-btn {
+        background: @secondary-btn-bg;
+    }
+}

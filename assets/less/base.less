@@ -1,0 +1,78 @@
+/*-----------------------------------------------------------------------------
+ *----------------------------------------------------------------------------- 
+ *
+ * BASE
+ * 
+ * Global element styles only (i.e. h1-h6, p, a, ul, li)
+ *
+ *-----------------------------------------------------------------------------
+ *----------------------------------------------------------------------------- */
+
+body {
+    background: @body-bg-color;
+    color: @base-font-color;
+    font-size: unit(@base-font-size, px);
+    font-weight: @base-font-weight;
+    line-height: @base-line-height;
+}
+
+h1,
+.h1 {
+    color: @h1-font-color;
+    .font-size-rems(@h1-font-size);
+    font-weight: @bold-font-weight;
+}
+
+h2,
+.h2 {
+    color: @h2-font-color;
+    .font-size-rems(@h2-font-size);
+    font-weight: @bold-font-weight;
+}
+
+h3,
+.h3 {
+    color: @h3-font-color;
+    .font-size-rems(@h3-font-size);
+    font-weight: @bold-font-weight;
+}
+
+h4,
+.h4 {
+    color: @h4-font-color;
+    .font-size-rems(@h4-font-size);
+    font-weight: @bold-font-weight;
+}
+
+h5,
+.h5 {
+    color: @h5-font-color;
+    .font-size-rems(@h5-font-size);
+    font-weight: @bold-font-weight;
+}
+
+h6,
+.h6 {
+    color: @h6-font-color;
+    .font-size-rems(@h6-font-size);
+    font-weight: @bold-font-weight;
+}
+
+a {
+    color: @link-color-default;
+
+    &:hover {
+        color: @link-color-hover;
+    }
+
+    &.active {
+        color: @link-color-active;
+    }
+}
+
+strong {
+    font-weight: @bold-font-weight;
+}
+
+// Set text selection color
+.selection(~'color: @{text-selection-foreground-color}; background: @{text-selection-bg-color}');
