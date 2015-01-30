@@ -10,10 +10,10 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="assets/css/main.min.css">
-        <script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
+        <link rel="stylesheet" href="/assets/css/main.min.css">
+        <script src="/assets/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
-    <body>
+    <body class="page-container">
         <article>
             <h1>Parallax Background Methods: A Performance Review</h1>
             <h2>Everyone says not to do it (except the people we build websites for)</h2>
@@ -27,11 +27,13 @@
             <h3>The Code</h3>
             <h4>CSS</h4>
             <div class="code">
-                <ul class="css">.container {</ul>
+                <span>.container {</span>
+                <ul class="css">
                     <li>background-size: cover;</li>
                     <li>background-position: 50% 50%</li>
                     <li>background-attachment: fixed;</li>
-                <ul>}</ul>
+                </ul>
+                <span>}</span>
             </div>
             <h5>background-size: cover and background-position</h5>
             <p>
@@ -64,22 +66,25 @@
             <h3>The Code</h3>
             <h4>CSS</h4>
             <div class="code">
-                <ul class="css">.container {</ul>
+                <span>.container {</span>
+                <ul class="css">
                     <li>background-size: cover;</li>
-                <ul>}</ul>
+                </ul>
+                <span>}</span>
             </div>
             <h4>JS</h4>
             <p>
                 There are many options for using JS to create a parallax effect.  I am using <a href="https://github.com/expandtheroom/jquery-scrolltie" target="_blank">jQuery ScrollTie</a> here. Here is the config for the demo page:
             </p>
             <div class="code">
-                $('.panel').scrollTie({
+                <span>$('.panel').scrollTie({</span>
                 <ul class="js">
                     <li>property: 'backgroundPositionY',</li>
                     <li>speed: 0.5,</li>
                     <li>reverseDirection: true,</li>
                     <li>stopAtValue: -800</li>
-                <ul>});</ul>
+                </ul>
+                <span>});</span>
             </div>
             <h3>What's it Doing?</h3>
             <p>
@@ -99,7 +104,7 @@
             </p>
             <h4>CSS</h4>
             <div class="code">
-                img {
+                <span>img {</span>
                 <ul class="css">
                     <li>position: absolute;</li>
                     <li>top: 0;</li>
@@ -109,17 +114,18 @@
                     <li>transform: translateX(-50%);</li>
                     <li>height: 200%;</li>
                 </ul>
-                }
+                <span>}</span>
             </div>
             <h4>JS</h4>
             <div class="code">
-                $('.panel img').scrollTie({
+                <span>$('.panel img').scrollTie({</span>
                 <ul class="js">
                     <li>property: 'translateY',</li>
                     <li>speed: 0.5,</li>
                     <li>reverseDirection: true,</li>
                     <li>stopAtValue: -800</li>
-                <ul>});</ul>
+                </ul>
+                <span>});</span>
             </div>
             <h3>What's it Doing?</h3>
             <p>
