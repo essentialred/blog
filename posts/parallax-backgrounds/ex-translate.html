@@ -44,7 +44,17 @@
                 <div class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu suscipit augue. Nam feugiat luctus quam, ut porttitor dui condimentum et. Donec eu metus fringilla, pharetra tellus vel, fringilla elit. Duis quis elit nec urna aliquam cursus. Donec placerat maximus metus non pharetra. Aenean facilisis suscipit enim vitae maximus. Vivamus non libero sapien. Pellentesque justo quam, pretium id cursus ut, lobortis sed ex. Sed sed elit lectus. Morbi faucibus metus massa, vel convallis tellus molestie vel. Nunc vel diam sit amet neque malesuada tincidunt.</div>
             </section>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="/assets/js/vendor/scrollTie.min.js"></script>
 
-        <script src="/assets/js/noBgSize.bundle.js"></script>
+        <script>
+            $('.panel img').scrollTie({
+                property: 'translateY',
+                speed: 0.5,
+                animateWhenOutOfView: true,
+                reverseDirection: true,
+                stopAtValue: -800
+            });
+        </script>
     </body>
 </html>
