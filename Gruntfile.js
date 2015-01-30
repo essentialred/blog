@@ -57,19 +57,6 @@ module.exports = function(grunt) {
 					'assets/js/cssWithJs.bundle.js' : [config.js.cssWithJs],
 					'assets/js/noBgSize.bundle.js' : [config.js.noBgSize]
 				}
-			},
-
-			vendor: {
-				options: {
-					shim: {
-						'jquery': {
-							path: 'node_modules/jquery/dist/jquery.min.js', exports: '$'
-						}
-					}
-				},
-				files: {
-					'assets/js/vendor.bundle.js' : [config.paths.vendor + '**/*.js']
-				}
 			}
 
 		},
@@ -107,24 +94,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		concat: {
-			options: {
-				separator: ';',
-			},
-			build: {
-				src: ['assets/js/vendor.bundle.js', 'assets/js/src.bundle.js'],
-				dest: 'assets/js/bundle.js'
-			},
-			cssWithJs: {
-				src: ['assets/js/vendor.bundle.js', 'assets/js/cssWithJs.bundle.js'],
-				dest: 'assets/js/cssWithJs.min.js'
-			},
-			noBgSize: {
-				src: ['assets/js/vendor.bundle.js', 'assets/js/noBgSize.bundle.js'],
-				dest: 'assets/js/noBgSize.min.js'
-			}
-		},
-
 		jshint: {
 			options: {
 				jshintrc: '.jshintrc'
@@ -151,5 +120,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 
 	// register custom tasks
-	grunt.registerTask('default', ['less', 'browserify:src', 'browserify:vendor', 'concat']);
+	grunt.registerTask('default', ['less', 'browserify']);
 };

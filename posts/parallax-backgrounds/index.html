@@ -16,36 +16,137 @@
     <body>
         <article>
             <h1>Parallax Background Methods: A Performance Review</h1>
-            <h2>Everyone says not to do it.  Except clients.</h2>
-            <h3>So here are some options for saving performance while you do the inevitable.</h3>
+            <h2>Everyone says not to do it (except the people we build websites for)</h2>
+            <h3>So here are some options to save performance while you do the inevitable!</h3>
 
             <h2>Pure CSS</h2>
-            <h3>Background-size</h3>
-            <h3>Background-attachment</h3>
-            <h3>Weird Bugs</h3>
+            <a href="ex-purecss.html" target="_blank" class="demo-link">See Demo</a>
+
+            <h3>The Code</h3>
+            <h4>CSS</h4>
+            <div class="code">
+                <ul class="css">.container {</ul>
+                    <li>background-size: cover;</li>
+                    <li>background-position: 50% 50%</li>
+                    <li>background-attachment: fixed;</li>
+                <ul>}</ul>
+            </div>
+            <h5>background-size: cover and background-position</h5>
+            <p>
+                This property value tells the background image to scale just enough to cover the entire container.  The image itself keeps its aspect ratio, which means that the top/bottom or sides will be cropped to accommodate the aspect ratio of its container.  You can control how the image is cropped by combining this property with <span class="inline-code">background-position</span>.  In this example, I'm positioning the background image centered both horizontally and vertically, which means that the top and bottom or right and left will be cropped evenly.
+            </p>
+            <h5>background-attachment: fixed</h5>
+            <p>
+                This property tells the browser not to scroll the image with the user; it sticks it in place so that even as the user scrolls, it stays still much like an element with <span class="inline-code">position: fixed</span>.
+            </p>
+            <p>
+                That magical combination of simple CSS is responsible for the fancy reveal panels that are in vogue these days, where an image appears to have a curtain lift over it instead of sliding into view like an ordinary element. It does come with a handful of bugs, but in many cases it's a great trick to know and keep in mind.  Speaking of its attendant bugs...
+            </p>
+
+            <h3>Weird Bug</h3>
+            <p>
+                Chrome has a hard time with <span class="inline-code">background-attachment: fixed</span> when used in combination with some other CSS3 properties.  I won't enumerate all of the possible erratic combinations, but the ones I've consistently noticed bugs with are 3D transforms applied to parent elements.  For a drastic example, open the <a href="ex-purecss.html" target="_blank">demo page</a> in Chrome and click the "Toggle Transform To Container" button in the top left.  All it does is add <span class="inline-code">transform: translate3d(0,0,0)</span> to the container element. <strong>*Note: If you click the button and see no change, hallelujah! the Chrome bug is probably fixed at last!</strong>  
+            </p>
+
             <h3>Review</h3>
             <p>
-                This is clearly a very charming solution.  It is developer-friendly, minimal code, and no JS.  It should absolutely be the first one to try if you're looking for a solution to making one or two banners on your website fancy and the rest of the template is fairly static.  I have made the mistake, however, of going down this road for a much more animation-heavy experience where there were many other elements moving on scroll or at fixed points, and the strange bugs listed above became prohibitive. There are also performance issues when you have a large layout employing the cover/fixed CSS solution to create the illusion of full-page panels.  As soon as more elements and greater demands are made on your parallax layout, this solution becomes questionable at best.  I still hope that browser evolution will catch up to us and that someday fullscreen, pure-CSS parallax panels will be butter-smooth and cooperative!  Until then, read on.
+                This is clearly a very charming solution.  It is developer-friendly, minimal code, and no JS.  It should absolutely be the first one to try if you're looking for a solution to making one or two banners on your website fancy and the rest of the template is fairly static.  I have made the mistake, however, of going down this road for a much more animation-heavy experience where there were many other elements moving on scroll or at fixed points, and the strange bug listed above became prohibitive. There are also performance issues when you have a large layout employing the cover/fixed CSS solution to create the illusion of full-page panels.  As soon as more elements and greater demands are made on your parallax layout, this solution becomes questionable at best.  I still hope that browser evolution will catch up to us and that someday fullscreen, pure-CSS parallax panels will be butter-smooth and cooperative!
             </p>
             <p>
                 This solution is also, as you can see, not truly "parallax" - the backgrounds are not moving at different speeds from the foregrounds, they are just staying in place so the foreground has the illusion of sliding over the top. (HINT: Try setting the panel class's height to 200% in the inspector - the illusion is much stronger). So if we want to achieve a similar effect but with ACTUAL parallax...
             </p>
 
             <h2>With JavaScript</h2>
-            <h3>Background-size</h3>
-            <h3>Update background-position on scroll</h3>
+            <a href="ex-bg-pos.html" target="_blank" class="demo-link">See Demo</a>
+
+            <h3>The Code</h3>
+            <h4>CSS</h4>
+            <div class="code">
+                <ul class="css">.container {</ul>
+                    <li>background-size: cover;</li>
+                <ul>}</ul>
+            </div>
+            <h4>JS</h4>
+            <p>
+                There are many options for using JS to create a parallax effect.  I am using <a href="https://github.com/expandtheroom/jquery-scrolltie" target="_blank">jQuery ScrollTie</a> here. Here is the config for the demo page:
+            </p>
+            <div class="code">
+                $('.panel').scrollTie({
+                <ul class="js">
+                    <li>property: 'backgroundPositionY',</li>
+                    <li>speed: 0.5,</li>
+                    <li>reverseDirection: true,</li>
+                    <li>stopAtValue: -800</li>
+                <ul>});</ul>
+            </div>
+            <h3>What's it Doing?</h3>
+            <p>
+                The CSS background-attachment is left natural (scroll) and the JS updates the background-position property instead to move the background, essentially slowing down the scroll effect.
+            </p>
             <h3>Review</h3>
             <p>
-                While this solution does give you fine-grain control over how strong you want the parallax effect to be (how fast should the background move), the performance is still shaky due to the use of background-size causing those repaints on every scroll.
+                While this solution does give you fine-grain control over how strong you want the parallax effect to be (how fast should the background move), you can feel that the performance is quite sticky.  Background-position is an expensive property to animate, and because we are operating on huge elements the lag becomes even more significant.  For more information on what makes a property expensive or not to animate, check out <a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/" target="_blank">this lovely write-up</a> by Paul Lewis and Paul Irish.  The short version is that in order to set the browser up for success, animate cheap properties - namely, transforms and opacity.  So what happens when we follow that advice?
             </p>
     
-            <h2>With JavaScript, no BG size</h2>
+            <h2>With JavaScript, Animate a "Cheap" Transform instead of BG Position</h2>
+            <a href="ex-translate.html" target="_blank" class="demo-link">See Demo</a>
+
             <h3>Using Images</h3>
-            <h3>Translate Image on scroll</h3>
+            <p>
+                The first major change is that since we aren't animating background-position, we need to not have background-images.  We'll swap them out for image elements, and position them so that they can simulate the effect of a background with attachment: fixed:
+            </p>
+            <h4>CSS</h4>
+            <div class="code">
+                img {
+                <ul class="css">
+                    <li>position: absolute;</li>
+                    <li>top: 0;</li>
+                    <li>right: 0;</li>
+                    <li>bottom: 0;</li>
+                    <li>left: 50%;</li>
+                    <li>transform: translateX(-50%);</li>
+                    <li>height: 200%;</li>
+                </ul>
+                }
+            </div>
+            <h4>JS</h4>
+            <div class="code">
+                $('.panel img').scrollTie({
+                <ul class="js">
+                    <li>property: 'translateY',</li>
+                    <li>speed: 0.5,</li>
+                    <li>reverseDirection: true,</li>
+                    <li>stopAtValue: -800</li>
+                <ul>});</ul>
+            </div>
+            <h3>What's it Doing?</h3>
+            <p>
+                We want the image to sit behind everything else in the container, just like a background image, so we're positioning it absolutely inside its parent, pinning it to all sides to make sure it covers the whole container.  It needs to be taller than its parent, however, in order to translateY without leaving gaps between the images.  I'm making the demo images arbitrarily 200% tall in order to do that - obviously in production, the height of the images and the speed of the parallax need to be tweaked to ensure you cut off an unacceptable amount of your image.  Instead of updating the background-position on scroll, the JS is now just pulling the entire image up with the help of hardware acceleration.  Much smoother, no?
+            </p>
             <h3>Review</h3>
             <p>
-                Despite the apparent lack of elegance to this solution, I have been able to achieve the best performance hands-down.  
+                Despite the extra markup for aesthetic purposes only, I've been able to acheive the best performance using this method hands-down.  You can compare the three demos side by side and feel the difference.
             </p>
+
+            <h2>Final Notes</h2>
+            <p>
+                Pure CSS: I still use the pure-css approach for fancy reveals in the middle of static pages, headers, and footers.  It's a great simple way to add pizazz with very little expense.
+            </p>
+            <p>
+                Animate BG Position: Although there are few reasons to use this method over the translate animation on an image element, you can definitely get away with it for smaller elements, such as having clouds moving behind a window.  I find a much more valid use for animating the BG-pos property in CSS transition animations (think: step-animations!), as opposed to tying it up on scroll.
+            </p>
+            <p>
+                Translate Image Elements: Anytime I need a robust solution for true parallax effects with large containers, I will consistently choose this approach.  But who knows - the next evolution of our browser technology might change my mind!
+            </p>
+            
+            <div class="about">
+                <h2>About the Author</h2>
+                <p>
+                    My name is Megan Tong and I'm an Interactive Engineer at <a href="http://www.expandtheroom.com" target="_blank">ExpandTheRoom</a>.
+                </p>
+                <p>Find me on Github: <a href="https://github.com/essentialred" target="_blank">essentialred</a></p>
+                <p>Find me on Twitter: <a href="https://twitter.com/mgntong" target="_blank">@mgntong</a></p>
+            </div>
         </article>
     </body>
 </html>

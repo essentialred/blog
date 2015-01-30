@@ -12,6 +12,7 @@
 
         <link rel="stylesheet" href="/assets/css/main.purecss.min.css">
         <script src="/assets/js/vendor/modernizr-2.6.2.min.js"></script>
+
     </head>
     <body>
         <div class="container">
@@ -38,5 +39,16 @@
                 <div class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu suscipit augue. Nam feugiat luctus quam, ut porttitor dui condimentum et. Donec eu metus fringilla, pharetra tellus vel, fringilla elit. Duis quis elit nec urna aliquam cursus. Donec placerat maximus metus non pharetra. Aenean facilisis suscipit enim vitae maximus. Vivamus non libero sapien. Pellentesque justo quam, pretium id cursus ut, lobortis sed ex. Sed sed elit lectus. Morbi faucibus metus massa, vel convallis tellus molestie vel. Nunc vel diam sit amet neque malesuada tincidunt.</div>
             </section>
         </div>
+
+        <button class="toggle-transform" style="position: fixed; top: 10px; left: 10px;">Toggle Transform To Container</button>
+        
+        <script src="/node_modules/jquery/dist/jquery.js"></script>
+
+        <script>
+            $('.toggle-transform').on('click', function() { 
+                $('.container').toggleClass('has-transform');
+            });
+        </script>
+
     </body>
 </html>
